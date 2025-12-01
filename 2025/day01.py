@@ -24,6 +24,7 @@ def part2():
         direction = line[0]
         rotation = int(line[1:])
 
+        # number of full rotations
         res += rotation // 100
         rotation %= 100
         
@@ -34,7 +35,7 @@ def part2():
         else:
             dial_val += rotation
 
-        # if we crossed the 0 boundary
+        # leftover rotations
         if dial_val <= 0 or dial_val >= 100:
             res += 1
         

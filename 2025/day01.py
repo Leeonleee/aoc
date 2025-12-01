@@ -23,21 +23,23 @@ def part2():
     for line in stdin:
         direction = line[0]
         rotation = int(line[1:])
+
+        res += rotation // 100
+        rotation %= 100
         
         if direction == "L":
-            for _ in range(rotation):
-                dial_val -= 1
-                if dial_val < 0:
-                    dial_val = 99
-                if dial_val == 0:
-                    res += 1
+            if dial_val == 0:
+                dial_val += 100
+            dial_val -= rotation
         else:
-            for _ in range(rotation):
-                dial_val += 1
-                if dial_val > 99:
-                    dial_val = 0
-                if dial_val == 0:
-                    res += 1
+            dial_val += rotation
+
+        # if we crossed the 0 boundary
+        if dial_val <= 0 or dial_val >= 100:
+            res += 1
+        
+        dial_val %= 100
+            
 
     print(res)
 
